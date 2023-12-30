@@ -2,18 +2,18 @@ import { IoCloseOutline } from "react-icons/io5"
 import { IoMdSearch } from "react-icons/io"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { useSearchType } from "../app/utils/useSearchType"
 
 const SearchForm = () => {
   const [loadingSearch, setLoadingSearch] = useState(false)
-  const { query, push, pathname } = useRouter()
+  const { query, push } = useRouter()
   const [search, setSearch] = useState("")
-
-  const { searchType } = useSearchType()
 
   function handleSearch(e) {
     e.preventDefault()
-    push(`/search/${searchType}?searchTerm=${search}`)
+    if (search.trim()) {
+      push(`/search/web?searchTerm=${search}`)
+    }
+    return
   }
   useEffect(() => {
     setSearch(query.searchTerm || "")
@@ -48,8 +48,8 @@ const SearchForm = () => {
         <input
           type="text"
           className="flex-grow 
-            focus:outline-none border-none"
-          value={search && search}
+              focus:outline-none border-none"
+          value={search}
           onChange={({ target }) => setSearch(target.value)}
         />
         {search && (
@@ -93,7 +93,7 @@ const SearchForm = () => {
           )}
         </div>
       </form>
-      {!pathname && (
+      {!query.searchTerm && (
         <div className="flex flex-col mt-8 space-y-2 sm:space-y-0 sm:flex-row sm:space-x-4 justify-center  ">
           <button className="btn" onClick={handleSearch}>
             Google Search

@@ -1,13 +1,7 @@
-import { useState } from "react"
-import { useRouter } from "next/router"
 import Image from "next/image"
 import SearchForm from "./SearchForm"
 
 const HomeSearch = () => {
-  const { push } = useRouter()
-
-  
-
   return (
     <div className="flex flex-col w-full items-center mt-24 ">
       <Image

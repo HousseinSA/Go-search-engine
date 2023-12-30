@@ -25,6 +25,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/search/image": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/search/image.js"
+    ],
     "/search/web": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

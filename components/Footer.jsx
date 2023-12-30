@@ -1,8 +1,9 @@
+
 import CountryLocation from "./CountryLocation"
 
 const Footer = () => {
   return (
-    <footer className="absolute w-full text-sm text-gray-500 bg-[#f2f2f2] bottom-0 ">
+    <footer className=" w-full absolute text-sm text-gray-500 bg-[#f2f2f2] bottom-0">
       <div className="border-b px-8 py-3">
         <CountryLocation />
       </div>

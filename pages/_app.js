@@ -3,7 +3,7 @@ import React from "react"
 import Head from "next/head"
 import "../app/global.css"
 
-function MyApp({Component, pageProps}) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
