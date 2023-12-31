@@ -1,7 +1,7 @@
 import SearchLayout from "../../../components/searchComponents/SearchLayout"
 import { useRouter } from "next/router"
 import Error from "../error"
-import ImageSearch from "../../../components/searchComponents/imageSearch"
+import ImageSearch from "../../../components/searchComponents/ImageSearch"
 import { useEffect, useState } from "react"
 import Loading from "../../../components/loading"
 

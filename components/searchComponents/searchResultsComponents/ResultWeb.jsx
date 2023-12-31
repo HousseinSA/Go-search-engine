@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Parser from "html-react-parser"
-const ResultWeb = ({ result }) => {
+const ResultWeb = ({ result }) => { 
   const [visitedLinks, setVisitedLinks] = useState([])
 
   useEffect(() => {

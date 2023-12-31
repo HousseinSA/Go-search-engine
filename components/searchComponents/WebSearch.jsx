@@ -1,5 +1,6 @@
 import Pagination from "./Pagination"
-import ResultWeb from "./searchResultsComponents/resultWeb"
+import ResultWeb from "./searchResultsComponents/ResultWeb"
+
 const WebSearch = ({ results, resultsInfo }) => {
   return (
     <main className="flex flex-col space-y-1 overflow-y-hidden p-4">
