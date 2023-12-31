@@ -2,13 +2,23 @@ import SearchLayout from "../../../components/searchComponents/SearchLayout"
 import { useRouter } from "next/router"
 import Error from "../error"
 import ImageSearch from "../../../components/searchComponents/imageSearch"
+import { useEffect, useState } from "react"
+import Loading from "../../../components/loading"
 
 const ImagePage = ({ results, resultsInfo, error }) => {
   const { query } = useRouter()
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (results || error) {
+      setLoading(false)
+    }
+  }, [])
 
   return (
     <SearchLayout>
-      {error ? (
+      {loading ? (
+        <Loading type={"image"} />
+      ) : error ? (
         <Error />
       ) : results === undefined ? (
         <div className="flex flex-col justify-center items-center space-y-4 pt-14">
@@ -25,7 +35,7 @@ const ImagePage = ({ results, resultsInfo, error }) => {
 
 export async function getServerSideProps(context) {
   const { query } = context
-
+  const start = query?.start ? parseFloat(query.start) : 1
   try {
     if (!query.searchTerm) {
       // Handle the case where searchTerm is undefined
@@ -36,7 +46,7 @@ export async function getServerSideProps(context) {
       }
     }
     const response = await fetch(
-      `https://www.googleapis.com/customsearch/v1?key=${process.env.NEXT_PUBLIC_GOOGLE_KEY2}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY2}&q=${query.searchTerm}&searchType=image&start=1`
+      `https://www.googleapis.com/customsearch/v1?key=${process.env.NEXT_PUBLIC_GOOGLE_KEY}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY}&q=${query.searchTerm}&searchType=image&start${start}`
     )
     if (!response.ok) {
       console.log(response)

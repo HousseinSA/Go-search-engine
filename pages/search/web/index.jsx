@@ -2,12 +2,22 @@ import SearchLayout from "../../../components/searchComponents/SearchLayout"
 import { useRouter } from "next/router"
 import Error from "../error"
 import WebSearch from "../../../components/searchComponents/WebSearch"
+import { useEffect, useState } from "react"
+import Loading from "../../../components/loading"
 
 const WebPage = ({ results, resultsInfo, error }) => {
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (results || error) {
+      setLoading(false)
+    }
+  }, [])
   const { query } = useRouter()
   return (
     <SearchLayout>
-      {error ? (
+      {loading ? (
+        <Loading type={"web"} />
+      ) : error ? (
         <Error />
       ) : results === undefined ? (
         <div className="flex flex-col justify-center items-center space-y-4 pt-14">
@@ -21,9 +31,9 @@ const WebPage = ({ results, resultsInfo, error }) => {
     </SearchLayout>
   )
 }
-
 export async function getServerSideProps(context) {
   const { query } = context
+  const start = query?.start ? parseFloat(query.start) : 1
   try {
     if (!query.searchTerm) {
       return {
@@ -32,17 +42,15 @@ export async function getServerSideProps(context) {
         },
       }
     }
-    const response = await fetch(
-      `https://www.googleapis.com/customsearch/v1?key=${process.env.NEXT_PUBLIC_GOOGLE_KEY2}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY2}&q=${query.searchTerm}`
-    )
 
+    const response = await fetch(
+      `https://www.googleapis.com/customsearch/v1?key=${process.env.NEXT_PUBLIC_GOOGLE_KEY}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY}&q=${query.searchTerm}&start=${start}`
+    )
     if (!response.ok) {
       console.log(response)
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
-
     const data = await response.json()
-
     return {
       props: {
         results: data?.items || [],

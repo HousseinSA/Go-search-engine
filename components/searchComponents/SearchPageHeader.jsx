@@ -18,7 +18,7 @@ export default function SearchPageHeader() {
           <Link href={"/"}>
             <div>
               <Image
-                // className="w-auto h-auto"
+                className=" max-w-[150px] min-h-10"
                 src={"/google.png"}
                 priority
                 width={150}

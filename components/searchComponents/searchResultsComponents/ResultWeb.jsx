@@ -19,7 +19,6 @@ const ResultWeb = ({ result }) => {
     // Store updated visited links in local storage
     localStorage.setItem("visitedLinks", JSON.stringify(updatedVisitedLinks))
   }
-
   const isVisited = visitedLinks.includes(result?.link)
 
   return (

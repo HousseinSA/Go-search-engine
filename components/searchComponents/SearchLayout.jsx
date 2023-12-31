@@ -4,7 +4,7 @@ const SearchLayout = ({ children }) => {
   return (
     <div>
       <SearchPageHeader />
-      <section className="mt-[195px]  sm:mt-[130px]">
+      <section className="pt-[195px]  sm:pt-[130px]">
         {children}
       </section>
     </div>
