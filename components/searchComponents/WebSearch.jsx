@@ -3,7 +3,7 @@ import ResultWeb from "./searchResultsComponents/ResultWeb"
 
 const WebSearch = ({ results, resultsInfo }) => {
   return (
-    <main className="flex flex-col space-y-1 overflow-y-hidden p-4">
+    <main className="flex flex-col space-y-4 overflow-y-hidden p-4">
       {resultsInfo && (
         <span className="text-gray-600">
           {`About ${resultsInfo?.totalResults}

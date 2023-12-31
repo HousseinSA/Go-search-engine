@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Parser from "html-react-parser"
-const ResultWeb = ({ result }) => { 
+const ResultWeb = ({ result }) => {
   const [visitedLinks, setVisitedLinks] = useState([])
 
   useEffect(() => {
@@ -20,9 +20,12 @@ const ResultWeb = ({ result }) => {
     localStorage.setItem("visitedLinks", JSON.stringify(updatedVisitedLinks))
   }
   const isVisited = visitedLinks.includes(result?.link)
-
   return (
-    <Link href={result?.link}>
+    <Link
+      href={result?.link}
+      className="py-2 flex flex-col gap-2 justify-center"
+    >
+      <span className="text-sm text-gray-500">{result?.displayLink}</span>
       <h1
         className={`text-lg ${
           isVisited ? "text-purple-800 visited" : "text-blue-800"

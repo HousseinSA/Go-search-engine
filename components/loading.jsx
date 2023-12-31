@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import ContentLoader from "react-content-loader"
 
 const Loading = ({ type }) => {

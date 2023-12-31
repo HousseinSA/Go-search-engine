@@ -40,7 +40,7 @@ const Pagination = ({ type }) => {
 
   return (
     <div className="py-10  w-full">
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center text-gray-500 justify-center gap-4">
         {currentPage >= 10 && (
           <div
             onClick={handelPreviousPage}
@@ -59,8 +59,10 @@ const Pagination = ({ type }) => {
               }`}
               key={page * 10}
               className={`${
-                currentPage === page * 10 && "text-blue-500 hover:underline"
-              }`}
+                currentPage === page * 10
+                  ? "text-blue-500 underline"
+                  : "text-gray-500"
+              } hover:underline hover:text-blue-500 cursor-pointer `}
             >
               {page}
             </Link>
